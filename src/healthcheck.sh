@@ -26,4 +26,4 @@ if ! tor_monitor; then
   exit 1
 fi
 
-curl -sx localhost:8118 'https://check.torproject.org/' | grep -qm1 Congratulations
+curl -fsSL -x 'socks5://127.0.0.1:9050' 'https://check.torproject.org/' | grep -qm1 'Congratulations'

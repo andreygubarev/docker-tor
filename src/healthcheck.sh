@@ -27,5 +27,8 @@ if ! tor_monitor; then
 fi
 
 if ! curl -fsSL -x 'socks5://127.0.0.1:9050' 'https://check.torproject.org/' | grep -qm1 'Congratulations'; then
+  TOR_AUTHCOOKIE="$(xxd -p -c 32 /var/lib/tor/control_auth_cookie)"
+  TOR_CONTROL=$(printf "AUTHENTICATE %s\r\nSIGNAL NEWNYM\r\nQUIT\r\n" "$TOR_AUTHCOOKIE")
+  echo "$TOR_CONTROL" | nc 127.0.0.1 9051
   exit 1
 fi

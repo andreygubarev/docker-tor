@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 set -eux
 
 export DEBIAN_FRONTEND=noninteractive

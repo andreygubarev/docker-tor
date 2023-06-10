@@ -9,10 +9,10 @@ tor_monitor() {
   while [ $TOR_MONITOR -lt $TOR_MONITOR_THRESHOLD ]; do
     sleep 1
     TOR_MONITOR=$((TOR_MONITOR+1))
-    if [ ! -f /etc/tor/run/control.authcookie ]; then
+    if [ ! -f /var/lib/tor/control_auth_cookie ]; then
       continue
     fi
-    TOR_AUTHCOOKIE="$(xxd -p -c 32 /etc/tor/run/control.authcookie)"
+    TOR_AUTHCOOKIE="$(xxd -p -c 32 /var/lib/tor/control_auth_cookie)"
     TOR_CONTROL=$(printf "AUTHENTICATE %s\r\nGETINFO status/bootstrap-phase\r\nQUIT\r\n" "$TOR_AUTHCOOKIE")
     TOR_STATUS="$(echo "$TOR_CONTROL" | nc 127.0.0.1 9051 | grep 'bootstrap-phase')"
     if echo "$TOR_STATUS" | grep -q "TAG=done"; then
@@ -26,4 +26,6 @@ if ! tor_monitor; then
   exit 1
 fi
 
-curl -fsSL -x 'socks5://127.0.0.1:9050' 'https://check.torproject.org/' | grep -qm1 'Congratulations'
+if ! curl -fsSL -x 'socks5://127.0.0.1:9050' 'https://check.torproject.org/' | grep -qm1 'Congratulations'; then
+  exit 1
+fi

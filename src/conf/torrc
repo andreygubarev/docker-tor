@@ -8,6 +8,8 @@ KeepalivePeriod 60
 NewCircuitPeriod 30
 NumEntryGuards 8
 
+SocksPort 127.0.0.1:9050 IsolateDestAddr
+
 ControlPort 127.0.0.1:9051
 CookieAuthentication 1
 

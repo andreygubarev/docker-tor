@@ -10,7 +10,7 @@ on:
 env:
   IMAGE_REGISTRY: ghcr.io
   IMAGE_NAMESPACE: andreygubarev
-  IMAGE_NAME: headscale
+  IMAGE_NAME: torproxy
   IMAGE_PLATFORMS: linux/amd64,linux/arm64
 
 jobs:

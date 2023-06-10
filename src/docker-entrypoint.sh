@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 set -eux
 
 export TOR_CONFIG=/etc/tor/torrc

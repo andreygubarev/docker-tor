@@ -7,6 +7,7 @@ RUN apt-get update &&  \
         curl \
         netcat \
         obfs4proxy \
+        tini \
         tor \
         xxd && \
     rm -rf /var/lib/apt/lists/*
@@ -23,4 +24,4 @@ ENV TOR_BRIDGE=
 
 HEALTHCHECK --interval=60s --timeout=45s --start-period=30s \
             CMD ["sh", "/healthcheck.sh"]
-ENTRYPOINT ["/docker-entrypoint.sh"]
+ENTRYPOINT ["tini", "--", "/docker-entrypoint.sh"]

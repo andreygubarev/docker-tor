@@ -7,7 +7,8 @@ RUN apt-get update &&  \
         curl \
         netcat \
         obfs4proxy \
-        tor && \
+        tor \
+        xxd && \
     rm -rf /var/lib/apt/lists/*
 
 COPY src/healthcheck.sh /healthcheck.sh

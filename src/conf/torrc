@@ -2,6 +2,12 @@ RunAsDaemon 0
 DataDirectory /var/lib/tor
 Log notice stdout
 
+ExitRelay 0
+ExitPolicy reject *:*
+ExitPolicyRejectPrivate 1
+
+BridgeRelay 0
+
 AutomapHostsOnResolve 1
 CircuitBuildTimeout 60
 KeepalivePeriod 60
@@ -14,4 +20,5 @@ ControlPort 127.0.0.1:9051
 CookieAuthentication 1
 
 UseBridges 0
+UpdateBridgesFromAuthority 1
 ClientTransportPlugin obfs4 exec /usr/bin/obfs4proxy

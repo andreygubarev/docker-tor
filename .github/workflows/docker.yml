@@ -14,7 +14,7 @@ env:
   IMAGE_PLATFORMS: linux/amd64,linux/arm64
 
 jobs:
-  build:
+  docker:
     name: Build and push multi-arch image
     runs-on: ubuntu-latest
 

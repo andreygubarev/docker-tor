@@ -6,7 +6,7 @@ on:
       - "v*.*.*"
 
 jobs:
-  release:
+  github:
     permissions:
       contents: write
     runs-on: ubuntu-latest

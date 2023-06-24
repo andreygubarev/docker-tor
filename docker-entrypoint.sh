@@ -3,6 +3,10 @@ set -eux
 
 export TOR_CONFIG=/etc/tor/torrc
 
+if [ -n "$TOR_NEWCIRCUIT_PERIOD" ]; then
+    sed -i "s/NewCircuitPeriod 60/NewCircuitPeriod ${TOR_NEWCIRCUIT_PERIOD}/" $TOR_CONFIG
+fi
+
 if [ -n "$TOR_BRIDGE" ]; then
     sed -i "s/UseBridges 0/UseBridges 1/" $TOR_CONFIG
     echo "Bridge $TOR_BRIDGE" >> $TOR_CONFIG

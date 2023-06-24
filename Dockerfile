@@ -19,6 +19,7 @@ RUN chmod a+x /healthcheck.sh /docker-entrypoint.sh
 USER debian-tor
 COPY --chown=debian-tor torrc /etc/tor/torrc
 
+ENV TOR_NEWCIRCUIT_PERIOD=
 ENV TOR_SERVICE=
 ENV TOR_BRIDGE=
 

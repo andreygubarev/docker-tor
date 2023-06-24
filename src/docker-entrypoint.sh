@@ -10,6 +10,7 @@ if [ -n "${SOCAT_PORTFORWARD}" ]; then
     SOCAT_CONNECT_OPTS="${SOCAT_CONNECT_OPTS:-}"
 fi
 
+SOCAT_BIND=
 if [ -n "${SOCAT_BIND_TYPE}" ] && [ -n "${SOCAT_BIND_IFACE}" ]; then
     if [ -n "${SOCAT_BIND_OPTS}" ]; then
         SOCAT_BIND_OPTS=",${SOCAT_BIND_OPTS}"
@@ -17,6 +18,7 @@ if [ -n "${SOCAT_BIND_TYPE}" ] && [ -n "${SOCAT_BIND_IFACE}" ]; then
     SOCAT_BIND="${SOCAT_BIND_TYPE}:${SOCAT_BIND_IFACE}${SOCAT_BIND_OPTS}"
 fi
 
+SOCAT_CONNECT=
 if [ -n "${SOCAT_CONNECT_TYPE}" ] && [ -n "${SOCAT_CONNECT_IFACE}" ]; then
     if [ -n "${SOCAT_CONNECT_OPTS}" ]; then
         SOCAT_CONNECT_OPTS=",${SOCAT_CONNECT_OPTS}"

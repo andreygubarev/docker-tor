@@ -22,6 +22,9 @@ COPY --chown=debian-tor src/conf/torrc /etc/tor/torrc
 ENV TOR_SERVICE=
 ENV TOR_BRIDGE=
 
+EXPOSE 9050
+EXPOSE 9051
+
 HEALTHCHECK --interval=60s --timeout=45s --start-period=30s \
             CMD ["sh", "/healthcheck.sh"]
 ENTRYPOINT ["tini", "--", "/docker-entrypoint.sh"]

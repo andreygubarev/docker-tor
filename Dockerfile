@@ -7,26 +7,17 @@ RUN apt-get update &&  \
         curl \
         netcat \
         obfs4proxy \
-        socat \
         tini \
         tor \
         xxd && \
     rm -rf /var/lib/apt/lists/*
 
-COPY src/healthcheck.sh /healthcheck.sh
-COPY src/docker-entrypoint.sh /docker-entrypoint.sh
+COPY healthcheck.sh /healthcheck.sh
+COPY docker-entrypoint.sh /docker-entrypoint.sh
 RUN chmod a+x /healthcheck.sh /docker-entrypoint.sh
 
 USER debian-tor
-COPY --chown=debian-tor src/conf/torrc /etc/tor/torrc
-
-ENV SOCAT_BIND_TYPE=
-ENV SOCAT_BIND_IFACE=
-ENV SOCAT_BIND_OPTS=
-ENV SOCAT_CONNECT_TYPE=
-ENV SOCAT_CONNECT_IFACE=
-ENV SOCAT_CONNECT_OPTS=
-ENV SOCAT_PORTFORWARD=
+COPY --chown=debian-tor torrc /etc/tor/torrc
 
 ENV TOR_SERVICE=
 ENV TOR_BRIDGE=
